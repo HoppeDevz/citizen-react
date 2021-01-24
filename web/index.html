@@ -7,10 +7,8 @@
 		href="https://fonts.googleapis.com/css?family=Roboto:light,regular,medium,thin,italic,mediumitalic,bold"
         title="roboto">
         
-	<!--<script src="nui://game/ui/jquery.js" type="text/javascript"></script>	
-    <script src="js/jquery.js" type="text/javascript"></script>-->
-
-
+	<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+    <script src="js/jquery.js" type="text/javascript"></script>
     
 </head>
 
@@ -34,6 +32,15 @@
     const { BrowserRouter, HashRouter, Switch, Route } = ReactRouterDOM;
 
     const Home = () => {
+        const [message, setMessage] = useState("");
+
+        useEffect(() => {
+            window.addEventListener("message", event => {
+                console.log(event.data);
+                setMessage(event.data.message);
+            })
+        }, [])
+
         return(
             <div style={{
                 width: "100vw",
@@ -43,6 +50,7 @@
                 alignItems: "center"
             }}>
                 <h1>React.js Script!</h1>
+                <span>{message}</span>
             </div>
         )
     }
